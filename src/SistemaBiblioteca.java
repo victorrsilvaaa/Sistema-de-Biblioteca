@@ -58,6 +58,18 @@ public class SistemaBiblioteca {
         System.out.println("Livro que deseja devolver não encontrado!");
     }
 
+    public static void buscarLivros(Scanner sc, ArrayList<Livro> livros) {
+        System.out.println("Livros Encontrados:");
+
+        for (Livro a : livros) {
+            System.out.println(a.getTintulo());
+        }
+    }
+
+    public static void sairBiblioteca() {
+        System.out.println("Saindo da biblioteca!");
+    }
+
 
     public static void main(String[] args) {
 
@@ -100,15 +112,11 @@ public class SistemaBiblioteca {
                     pegarEmprestado(sc, livros);
 
                 case 5:
-                    System.out.println("Livros Encontrados:");
-
-                    for (Livro a : livros) {
-                        System.out.println(a.getTintulo());
-                    }
+                    buscarLivros(sc, livros);
                     break;
 
                 case 6:
-                    System.out.println("Saindo da biblioteca!");
+                    sairBiblioteca();
                     break;
 
                 default:
