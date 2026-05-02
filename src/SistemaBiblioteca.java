@@ -26,10 +26,11 @@ public class SistemaBiblioteca {
     public static void pegarEmprestado(Scanner sc, ArrayList<Livro> livros) {
         System.out.println("Digite o Titulo do Livro que Deseja Pegar Emprestado:");
         String emprestado = sc.nextLine();
-
+        var foiEncontrado = false;
         for (Livro a : livros) {
 
             if (emprestado.equalsIgnoreCase(a.getTintulo())) {
+                foiEncontrado = true;
                 if (a.isEmprestado()) {
                     System.out.println("Livro encontrado, porem já foi emprestado!");
                     break;
@@ -40,22 +41,29 @@ public class SistemaBiblioteca {
 
             }
         }
-        System.out.println("Livro Não encontrado");
+        if (!foiEncontrado) {
+            System.out.println("Livro Não encontrado");
+        }
 
     }
 
     public static void devolverLivro(Scanner sc, ArrayList<Livro> livros) {
         System.out.println("Digite o nome do Livro que deseja devolver:");
         String devolucao = sc.next();
+        var foiDevolvido = false;
 
         for (Livro d : livros) {
             if (devolucao.equalsIgnoreCase(d.getTintulo())) {
                 d.setEmprestado(false);
                 System.out.println("Devolucao feita!");
+                foiDevolvido = true;
                 break;
+
             }
         }
-        System.out.println("Livro que deseja devolver não encontrado!");
+        if (!foiDevolvido) {
+            System.out.println("Livro que deseja devolver não encontrado!");
+        }
     }
 
     public static void buscarLivros(Scanner sc, ArrayList<Livro> livros) {
@@ -109,8 +117,8 @@ public class SistemaBiblioteca {
                     pegarEmprestado(sc, livros);
                     break;
                 case 4:
-                    pegarEmprestado(sc, livros);
-
+                    devolverLivro(sc, livros);
+                    break;
                 case 5:
                     buscarLivros(sc, livros);
                     break;
